@@ -9,90 +9,189 @@
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 
-// MARK: - framebuffer_size_callback
-/// window 크기가 조정될 때마다 호출되는 창에 콜백 함수를 등록
-/// user가 window 크기를 조정하는 순간 뷰포트도 조정되어야 함
-void framebuffer_size_callback(GLFWwindow* window, int width, int height) {
-    // MARK: view port
-    /// 렌더링을 시작하기 전에 마지막으로 한 가지 작업을 수행해야 함 -> OpenGL에게 렌더링 창의 크기를 알려주어야함
-    /// 1, 2번째 매개변수 왼쪽 하단 corner (x, y)
-    /// 3, 4번째 rendering window의 width 와 height
-    glViewport(0, 0, width, height);
+void framebuffer_size_callback(GLFWwindow* window, int width, int height);
+void processInput(GLFWwindow *window);
+
+// settings
+const unsigned int SCR_WIDTH = 800;
+const unsigned int SCR_HEIGHT = 600;
+
+const char *vertexShaderSource = "#version 330 core\n"
+    "layout (location = 0) in vec3 aPos;\n"
+    "void main()\n"
+    "{\n"
+    "   gl_Position = vec4(aPos.x, aPos.y, aPos.z, 1.0);\n"
+    "}\0";
+
+const char *fragmentShaderSource = "#version 330 core\n"
+    "out vec4 FragColor;\n"
+    "void main()\n"
+    "{\n"
+    "   FragColor = vec4(1.0f, 0.5f, 0.2f, 1.0f);\n"
+    "}\n\0";
+
+int main()
+{
+    // glfw: initialize and configure
+    // ------------------------------
+    glfwInit();
+    glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
+    glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
+    glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+
+#ifdef __APPLE__
+    glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
+#endif
+
+    // glfw window creation
+    // --------------------
+    GLFWwindow* window = glfwCreateWindow(SCR_WIDTH, SCR_HEIGHT, "LearnOpenGL", NULL, NULL);
+    if (window == NULL)
+    {
+        std::cout << "Failed to create GLFW window" << std::endl;
+        glfwTerminate();
+        return -1;
+    }
+    glfwMakeContextCurrent(window);
+    glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
+
+    // glad: load all OpenGL function pointers
+    // ---------------------------------------
+    if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
+    {
+        std::cout << "Failed to initialize GLAD" << std::endl;
+        return -1;
+    }
+
+    // build and compile our shader program
+    // ------------------------------------
+    // vertex shader
+    unsigned int vertexShader = glCreateShader(GL_VERTEX_SHADER);
+    glShaderSource(vertexShader, 1, &vertexShaderSource, NULL);
+    glCompileShader(vertexShader);
+    
+    // shader compile errors 확인
+    int success;
+    char infoLog[512];
+    glGetShaderiv(vertexShader, GL_COMPILE_STATUS, &success);
+    if (!success)
+    {
+        glGetShaderInfoLog(vertexShader, 512, NULL, infoLog);
+        std::cout << "ERROR::SHADER::VERTEX::COMPILATION_FAILED\n" << infoLog << std::endl;
+    }
+    
+    // fragment shader
+    unsigned int fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
+    glShaderSource(fragmentShader, 1, &fragmentShaderSource, NULL);
+    glCompileShader(fragmentShader);
+    
+    // check for shader compile errors
+    glGetShaderiv(fragmentShader, GL_COMPILE_STATUS, &success);
+    if (!success)
+    {
+        glGetShaderInfoLog(fragmentShader, 512, NULL, infoLog);
+        std::cout << "ERROR::SHADER::FRAGMENT::COMPILATION_FAILED\n" << infoLog << std::endl;
+    }
+    
+    // link shaders
+    unsigned int shaderProgram = glCreateProgram();
+    glAttachShader(shaderProgram, vertexShader);
+    glAttachShader(shaderProgram, fragmentShader);
+    glLinkProgram(shaderProgram);
+    
+    // check for linking errors
+    glGetProgramiv(shaderProgram, GL_LINK_STATUS, &success);
+    if (!success) {
+        glGetProgramInfoLog(shaderProgram, 512, NULL, infoLog);
+        std::cout << "ERROR::SHADER::PROGRAM::LINKING_FAILED\n" << infoLog << std::endl;
+    }
+    glDeleteShader(vertexShader);
+    glDeleteShader(fragmentShader);
+
+    // set up vertex data (and buffer(s)) and configure vertex attributes
+    // ------------------------------------------------------------------
+    float vertices[] = {
+        -0.5f, -0.5f, 0.0f, // left
+         0.5f, -0.5f, 0.0f, // right
+         0.0f,  0.5f, 0.0f  // top
+    };
+
+    unsigned int VBO, VAO;
+    glGenVertexArrays(1, &VAO);
+    glGenBuffers(1, &VBO);
+    
+    // 먼저 Vertex Array Object를 바인딩한 다음 정점 버퍼를 바인딩 및 설정하고 정점 속성을 구성
+    glBindVertexArray(VAO);
+
+    glBindBuffer(GL_ARRAY_BUFFER, VBO);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
+    glEnableVertexAttribArray(0);
+
+    // 이것이 허용된다는 점에 유의
+    // glVertexAttribPointer에 대한 호출은 VBO를 정점 속성의 바인딩된 정점 버퍼 객체로 등록하므로 나중에 안전하게 바인딩을 해제할 수 있음
+    glBindBuffer(GL_ARRAY_BUFFER, 0);
+
+    // 나중에 VAO 바인딩을 해제하여 다른 VAO 호출이 실수로 이 VAO를 수정하지 않도록 할 수 있지만 이런 일은 거의 발생하지 않음
+    // 기타 수정 VAO에는 어쨌든 glBindVertexArray에 대한 호출이 필요하므로 일반적으로 직접적으로 필요하지 않은 경우에는 VAO(또는 VBO)를 바인딩 해제하지 않음
+    glBindVertexArray(0);
+
+    // uncomment this call to draw in wireframe polygons.
+    // glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+
+    // render loop
+    // -----------
+    while (!glfwWindowShouldClose(window))
+    {
+        // input
+        // -----
+        processInput(window);
+
+        // render
+        // ------
+        glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
+        glClear(GL_COLOR_BUFFER_BIT);
+
+        // draw our first triangle
+        glUseProgram(shaderProgram);
+        glBindVertexArray(VAO); // VAO가 하나만 있으므로 매번 바인딩할 필요는 없지만 좀 더 체계적으로 유지하기 위해 바인딩할 것
+        glDrawArrays(GL_TRIANGLES, 0, 6);
+        // glBindVertexArray(0); // no need to unbind it every time
+ 
+        // glfw: swap buffers and poll IO events (keys pressed/released, mouse moved etc.)
+        // -------------------------------------------------------------------------------
+        glfwSwapBuffers(window);
+        glfwPollEvents();
+    }
+
+    // optional: de-allocate all resources once they've outlived their purpose:
+    // ------------------------------------------------------------------------
+    glDeleteVertexArrays(1, &VAO);
+    glDeleteBuffers(1, &VBO);
+    glDeleteProgram(shaderProgram);
+
+    // glfw: terminate, clearing all previously allocated GLFW resources.
+    // ------------------------------------------------------------------
+    glfwTerminate();
+    return 0;
 }
 
 // MARK: - processInput
-// 사용자의 input을 받아서 GLFW를 control하기위해 callback함수
-void processInput(GLFWwindow* window) {
+// process all input: query GLFW whether relevant keys are pressed/released this frame and react accordingly
+// ---------------------------------------------------------------------------------------------------------
+void processInput(GLFWwindow *window)
+{
     if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
         glfwSetWindowShouldClose(window, true);
 }
 
-// MARK: - main
-int main(int argc, char* argv[]) {
-    // MARK: glfw initialize and configure
-    /// glfwInit -> 초기화
-    /// glfwWindowHint -> 옵션 구성
-    glfwInit();
-    glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
-    glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
-    
-    /// GLFW에게 명시적으로 core-profile을 사용하고 싶다고 알림
-    /// core-profile: 필요하지 않은 이전 버전과 호환되는 기능 없이 OpenGL 기능의 더 작은 하위 집합에 액세스할 수 있다는 의미
-    glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
-    
-#ifdef __APPLE__
-    glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
-#endif
-    //
-    
-    // MARK: glfw window creation
-    GLFWwindow* window = glfwCreateWindow(800, 600, "Learn OpenGL", NULL, NULL);
-    if (window == NULL) {
-        std::cout << "GLFW window 생성 실패" << std::endl;
-        glfwTerminate();
-        return -1;
-    }
-    
-    /// GLFW에게 우리 Window의 컨텍스트를 현재 스레드의 기본 컨텍스트로 만들라고 지시하는 메서드
-    glfwMakeContextCurrent(window);
-    /// Window이 처음 표시될 때 glfwSetFramebufferSizeCallback의 반환이 Window 크기와 함께 호출 됨
-    /// Window을 만든 후 렌더링 루프가 시작되기 전에 콜백 함수를 등록
-    glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
-    
-    // MARK: glad initialize
-    /// OpenGL 함수를 호출하기 전에 GLAD를 초기화해야함
-    /// OS에 특정한 OpenGL 함수 포인터의 주소를 로드하기 위해 함수를 GLAD에 전달해야 함 -> gladLoadGLLoader
-    /// glfwGetProcAddress에 컴파일하는 OS에 따라 맞게 참조/정의하도록 함
-    if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)) {
-        std::cout << "GLAD 초기화 실패" << std::endl;
-        return -1;
-    }
-    
-    // MARK: Ready your engines
-    /// application을 그리고 바로 window를 종료하지 않기 위해서는 사용자의 input을 기다리거나 명시적으로 그만하기를 요청할 때까지 window에 application을 계속 그리거나/나타내야 함
-    /// -> render loop
-    while (!glfwWindowShouldClose(window)) { // loop가 돌때마다 GLFW가 glfwWindowShouldClose을 통해 참/불인지 받았는지를 확인
-        
-        processInput(window); // input
-        
-        // rendering
-        glClearColor(0.2f, 0.3f, 0.3f, 1.0f); // screen 색 설정
-        glClear(GL_COLOR_BUFFER_BIT); // glClear를 호출하고 색상 버퍼를 지울 때마다 전체 색상 버퍼는 glClearColor에 의해 구성된 색상으로 채워짐
-        
-        /// GLFW window 각의 pixel의 색정보를 가지고 있는 커다란 2D buffer를 swap
-        /// 이 loop에서 swap을 반복하면서 나중에 rendering할때 screen에 output을 나타내게될 것
-        glfwSwapBuffers(window);
-        
-        glfwPollEvents(); // keyboard input 혹은 mouse movement event가 발생했는지를 확인
-        
-        /// cf. Double buffer
-        /// application이 단일 버퍼에서 그림을 그리면 깜박임 현상이 발생할 수있음
-        /// 이는 이미지가 즉시 표시되지 않고 왼쪽에서 오른쪽, 위에서 아래로 픽셀 단위로 그려지기 때문
-        /// 이를 해결하기 위해 더블 버퍼링을 사용
-        /// 최종 출력 이미지를 화면에 보여주는 프론트 버퍼와 렌더링 명령이 그려지는 백 버퍼를 사용
-        /// 모든 렌더링 명령이 완료되면 백 버퍼와 프론트 버퍼를 교체하여, 렌더링 중인 이미지가 표시되지 않도록 함
-    }
-    
-    glfwTerminate(); // 이전에 할당된 모든 GLFW 리소스를 지움
-    return 0;
+// MARK: - framebuffer_size_callback
+// glfw: whenever the window size changed (by OS or user resize) this callback function executes
+// ---------------------------------------------------------------------------------------------
+void framebuffer_size_callback(GLFWwindow* window, int width, int height)
+{
+    // 뷰포트가 새 창 크기와 일치하는지 확인
+    // 너비와 높이는 레티나 디스플레이에 지정된 것보다 상당히 커짐
+    glViewport(0, 0, width, height);
 }

@@ -1,6 +1,6 @@
 # Hello Triangle
 
-> OpenGL에서는 모든 것이 3D 공간에 있지만 화면이나 창은 픽셀의 2D 배열이므로 OpenGL 작업의 대부분은 모든 3D 좌표를 화면에 맞는 2D 픽셀로 변환하는 것입니다.
+> OpenGL에서는 모든 것이 3D 공간에 있지만 화면이나 창은 픽셀의 2D 배열이므로 OpenGL 작업의 대부분은 모든 3D 좌표를 화면에 맞는 2D 픽셀로 변환하는 것
 
 OpenGL에서는 3D 좌표를 2D 픽셀로 변환하는 프로세스는 OpenGL의 graphics pipeline에 의해 관리함
 
@@ -10,6 +10,7 @@ OpenGL에서는 3D 좌표를 2D 픽셀로 변환하는 프로세스는 OpenGL의
   <br/>
 
 - 2D 좌표를 실제 색상 픽셀로 변환 부분
+  <br/>
 
 Graphics pipeline은 여러 단계로 나눌 수 있으며, 각 단계에는 이전 단계의 출력이 입력으로 필요
 
@@ -23,7 +24,7 @@ shader 중 일부는 개발자가 구성이 가능, 기존 기본 shader를 대�
 
 이를 통해 파이프라인의 특정 부분을 훨씬 더 세밀하게 제어할 수 있으며 GPU에서 실행되므로 CPU 시간도 절약할 수 있음
 
-GLSL(OpenGL Shading Language)로 작성
+GLSL(OpenGL Shading Language) 작성
 
 ## Graphics pipeline
 
@@ -35,7 +36,7 @@ blue section이 개발자가 직접 configure한 shader를 넣을 수 있는 영
 
 ![graphics pipeline](https://learnopengl.com/img/getting-started/pipeline.png)
 
-1. Vertex Data
+1. **Vertex Data**
 
    - 맨 처음 전달하는 3D coordinate list를 Vertex Data 이 좌표들이 삼각형의 vertices
      <br/>
@@ -46,10 +47,10 @@ blue section이 개발자가 직접 configure한 shader를 넣을 수 있는 영
    - 그다음으로 이 점들을 가지고 어떤 형태를 rendering할 것인지 OpenGL에게 hint가 필요
      <br/>
 
-   - 단순히 점을 그릴 것인지? 삼각형을 그릴 것인지? 아니면 직선을 그릴 것인지? 와 같이 미리 알려주는 내용을 **primitives**
+   - 단순히 점을 그릴 것인지? 삼각형을 그릴 것인지? 아니면 직선을 그릴 것인지? 와 같이 미리 알려주는 내용을 _'primitives'_
      <br/>
 
-2. Vetex shader
+2. **Vetex Shader**
 
    - vertex shader는 single vertex를 input으로 받음
      <br/>
@@ -60,7 +61,7 @@ blue section이 개발자가 직접 configure한 shader를 넣을 수 있는 영
    - vertex attribute의 기본적인 processing을 수행함
      <br/>
 
-3. Primitive assembly
+3. **Primitive assembly**
 
    - vertext shader로부터 모든 vertices좌표를 input으로 받음
      <br/>
@@ -68,7 +69,7 @@ blue section이 개발자가 직접 configure한 shader를 넣을 수 있는 영
    - primitive대로 vertices를 합쳐줌
      <br/>
 
-4. Geometry shader
+4. **Geometry shader**
 
    - 이전 단계에서의 output인 primitive를 구성하는 collection of vertices를 input으로 받음
      <br/>
@@ -76,9 +77,9 @@ blue section이 개발자가 직접 configure한 shader를 넣을 수 있는 영
    - 이 단계에서 새로운 vertex를 추가해서 새로운 primitive를 만들 수 있게 해줌
      <br/>
 
-5. Rasterization stage
+5. **Rasterization stage**
 
-   - 이전단계의 output을 input으로 받음
+   - 이전 단계의 output을 input으로 받음
      <br/>
 
    - 이 단계에선 resulting primitives를 최종 화면(screen)에 pixel로 대응하는 작업이 수행되는 것
@@ -87,9 +88,9 @@ blue section이 개발자가 직접 configure한 shader를 넣을 수 있는 영
    - 이어서 fragment shader가 사용할 수 있게 fragments를 만들어냄
      <br/>
 
-6. Fragments
+6. **Fragments**
 
-   - OpenGL이 single pixel을 render하기 위해 필요한 모든 data
+   - OpenGL이 single pixel을 rendering하기 위해 필요한 모든 data
      <br/>
 
    - fragment shader단계로 진입하기 전에 clipping이라는 작업이 진행되는데 이는 화면 밖으로 나간 fragments들을 버리는 작업
@@ -98,9 +99,9 @@ blue section이 개발자가 직접 configure한 shader를 넣을 수 있는 영
    - 성능 향상을 위해 수행되는 동작(화면에 보이지 않음)
      <br/>
 
-7. Fragment shader
+7. **Fragment shader**
 
-   - 픽셀의 최종 색을 계산
+   - 픽셀의 최종 색을 계산을 함
      <br/>
 
    - 이때 3D scene의 모든 정보(그림자, 빛, 빛의 색)를 고려해서 pixel color를 칠하게 됨

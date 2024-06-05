@@ -13,7 +13,9 @@ const char *vertexShaderSource = "#version 330 core\n"
 
 OpenGL이 셰이더를 사용하려면 런타임에 소스 코드에서 셰이더를 동적으로 컴파일해야 함
 
-가장 먼저 해야 할 일은 다시 ID로 참조되는 셰이더 개체를 만드는 것, 즉 정점 셰이더를 **unsigned int**로 저장하고 **glCreateShader**를 사용하여 셰이더를 생성함
+가장 먼저 해야 할 일은 다시 ID로 참조되는 셰이더 개체를 만드는 것
+
+즉 정점 셰이더를 **unsigned int**로 저장하고 **glCreateShader**를 사용하여 셰이더를 생성함
 
 ```cpp
 unsigned int vertexShader;
@@ -38,6 +40,8 @@ glCompileShader(vertexShader);
   - 네 번째 매개변수는 NULL로 남겨둘 수 있음
     <br/>
 
+---
+
 **cf. glCompileShader를 호출한 후 컴파일이 성공했는지 확인하고 그렇지 않은 경우**
 
 > 어떤 오류가 발견되었으므로 이를 수정할 수 있습니다. 컴파일 타임 오류 확인은 다음과 같이 수행
@@ -60,3 +64,9 @@ if(!success)
 ```
 
 정점 셰이더를 컴파일하는 동안 오류가 감지되지 않으면 이제 컴파일
+
+## 참고
+
+[원본](https://learnopengl.com/Getting-started/Hello-Triangle)
+
+[블로그 참고](https://jsdysw.tistory.com/83)
