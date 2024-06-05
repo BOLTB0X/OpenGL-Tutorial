@@ -9,3 +9,15 @@
 ## [Creating a window](https://github.com/BOLTB0X/OpenGL-Tutorial/tree/main/Tutorial)
 
 ## [Hello Window](https://github.com/BOLTB0X/OpenGL-Tutorial/tree/Hello-Window/Tutorial)
+
+- [Vertex input](https://github.com/BOLTB0X/OpenGL-Tutorial/blob/Hello-Triangle/Tutorial/Vertex%20input.md)
+
+- [Vertex shader](https://github.com/BOLTB0X/OpenGL-Tutorial/blob/Hello-Triangle/Tutorial/Vertex%20shader.md)
+
+- [Compiling a shader](https://github.com/BOLTB0X/OpenGL-Tutorial/blob/Hello-Triangle/Tutorial/Compiling%20a%20shader.md)
+
+- [Fragment shader](https://github.com/BOLTB0X/OpenGL-Tutorial/blob/Hello-Triangle/Tutorial/Fragment%20shader.md)
+
+- [Linking Vertex Attributes](https://github.com/BOLTB0X/OpenGL-Tutorial/blob/Hello-Triangle/Tutorial/Linking%20Vertex%20Attributes.md)
+
+- [Element Buffer Objects](https://github.com/BOLTB0X/OpenGL-Tutorial/blob/Hello-Triangle/Tutorial/Element%20Buffer%20Objects.md)
