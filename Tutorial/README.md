@@ -121,14 +121,14 @@ blue section이 개발자가 직접 configure한 shader를 넣을 수 있는 영
 
    - moden OpenGL에서는 최소한으로 vertex와 fragment shader만큼은 직접 정의하도록 하고 있음
 
-## [Vertex input]()
+## [Vertex input](https://github.com/BOLTB0X/OpenGL-Tutorial/blob/Hello-Triangle/Tutorial/Vertex%20input.md)
 
-## [Vertex shader]()
+## [Vertex shader](https://github.com/BOLTB0X/OpenGL-Tutorial/blob/Hello-Triangle/Tutorial/Vertex%20shader.md)
 
-## [Compiling a shader]()
+## [Compiling a shader](https://github.com/BOLTB0X/OpenGL-Tutorial/blob/Hello-Triangle/Tutorial/Compiling%20a%20shader.md)
 
-## [Fragment shader]()
+## [Fragment shader](https://github.com/BOLTB0X/OpenGL-Tutorial/blob/Hello-Triangle/Tutorial/Fragment%20shader.md)
 
-## [Linking Vertex Attributes]()
+## [Linking Vertex Attributes](https://github.com/BOLTB0X/OpenGL-Tutorial/blob/Hello-Triangle/Tutorial/Linking%20Vertex%20Attributes.md)
 
-## [Element Buffer Objects]()
+## [Element Buffer Objects](https://github.com/BOLTB0X/OpenGL-Tutorial/blob/Hello-Triangle/Tutorial/Element%20Buffer%20Objects.md)
