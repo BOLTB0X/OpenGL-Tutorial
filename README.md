@@ -10,6 +10,8 @@
 
 ## [Hello Window](https://github.com/BOLTB0X/OpenGL-Tutorial/tree/Hello-Window/Tutorial)
 
+## [Hello Triangle](https://github.com/BOLTB0X/OpenGL-Tutorial/tree/Hello-Triangle/Tutorial)
+
 - [Vertex input](https://github.com/BOLTB0X/OpenGL-Tutorial/blob/Hello-Triangle/Tutorial/Vertex%20input.md)
 
 - [Vertex shader](https://github.com/BOLTB0X/OpenGL-Tutorial/blob/Hello-Triangle/Tutorial/Vertex%20shader.md)
