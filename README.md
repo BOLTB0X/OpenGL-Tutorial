@@ -2,11 +2,17 @@
 
 > 그래픽 및 이미지를 조작하는 데 사용할 수 있는 많은 기능들을 제공하는 API
 
-[Learn OpenGL](https://learnopengl.com/) 사이트 내 튜토리얼을 Xcode 환경에서 진행하며 학습한 내용을 정리하는 레파지토리
+- [Learn OpenGL](https://learnopengl.com/) 진행
 
-심화된 내용보단 기초적인 것들 중심으로 작성
+- 개발환경: Xcode, GLFW, glad
+
+- 사용 기술: OpenGL, GLSL, Shader Programming, C++
 
 ## [Creating a window](https://github.com/BOLTB0X/OpenGL-Tutorial/tree/main/Tutorial)
+
+<p align="center">
+   <img src="https://github.com/BOLTB0X/OpenGL-Tutorial/assets/83914919/07b85be6-fc47-4e3d-84a7-ea6cdd417515" alt="Example Image" width="80%">
+</p>
 
 ## [Hello Window](https://github.com/BOLTB0X/OpenGL-Tutorial/tree/Hello-Window/Tutorial)
 
