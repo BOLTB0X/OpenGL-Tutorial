@@ -1,12 +1,14 @@
-# Learn-OpenGL Study
+# OpenGL Study In Xcode
+
+![ㅎㅇ](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Ft1.daumcdn.net%2Fcfile%2Ftistory%2F24116F4354A805992E)
 
 > 그래픽 및 이미지를 조작하는 데 사용할 수 있는 많은 기능들을 제공하는 API
 
-- [Learn OpenGL](https://learnopengl.com/) 진행
-
-- 개발환경: Xcode, GLFW, glad
-
-- 사용 기술: OpenGL, GLSL, Shader Programming, C++
+| 항목         | 내용 |
+|-------------|---------------------------------|
+| 학습 자료 | [Learn OpenGL](https://learnopengl.com/) |
+| 개발 환경 | Xcode, GLFW, glad |
+| 사용 기술 | OpenGL, GLSL, Shader Programming, C++ |
 
 ## [Creating a window](https://github.com/BOLTB0X/OpenGL-Tutorial/tree/main/Tutorial)
 
