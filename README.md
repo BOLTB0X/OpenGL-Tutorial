@@ -1,3 +1,3 @@
 # OpenGL
 
-![아키라메나이데](https://mblogvideo-phinf.pstatic.net/MjAxNzA4MDZfMTgz/MDAxNTAyMDI3NjIwMzQ0.p9iRYJ0F3CAw8JXZWZn1veMhZ7SdxNcWrzvrRxoYHukg.4583OkeQG8VNp9HZlqe8tt8IiKqcH0HIao1oZ7rJXx0g.GIF.chzh2ezraa/1234.gif?type=mp4w800)
+![아키라메나이데](https://github.com/BOLTB0X/OpenGL-Tutorial/blob/main/Img/%EC%95%84%ED%82%A4%EB%9D%BC%EB%A9%94%EB%82%98%EC%9D%B4%EB%8D%B0.gif?raw=true)
