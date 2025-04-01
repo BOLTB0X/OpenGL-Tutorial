@@ -3,8 +3,8 @@
   "WorkspaceRootPath": "C:\\Users\\TOP\\Documents\\GitHub\\OpenGL-Tutorial\\Window\\OpenGL_Project01\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{4A761799-5C9A-4D12-8A4D-9E984D91DFE4}|OpenGL_Project01\\OpenGL_Project01.vcxproj|C:\\Users\\TOP\\Documents\\GitHub\\OpenGL-Tutorial\\Window\\OpenGL_Project01\\OpenGL_Project01\\main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{4A761799-5C9A-4D12-8A4D-9E984D91DFE4}|OpenGL_Project01\\OpenGL_Project01.vcxproj|solutionrelative:OpenGL_Project01\\main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+      "AbsoluteMoniker": "D:0:0:{4A761799-5C9A-4D12-8A4D-9E984D91DFE4}|OpenGL_Project01\\OpenGL_Project01.vcxproj|C:\\Users\\TOP\\Documents\\GitHub\\OpenGL-Tutorial\\Window\\OpenGL_Project01\\OpenGL_Project01\\src\\main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{4A761799-5C9A-4D12-8A4D-9E984D91DFE4}|OpenGL_Project01\\OpenGL_Project01.vcxproj|solutionrelative:OpenGL_Project01\\src\\main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     }
   ],
   "DocumentGroupContainers": [
@@ -20,13 +20,13 @@
               "$type": "Document",
               "DocumentIndex": 0,
               "Title": "main.cpp",
-              "DocumentMoniker": "C:\\Users\\TOP\\Documents\\GitHub\\OpenGL-Tutorial\\Window\\OpenGL_Project01\\OpenGL_Project01\\main.cpp",
-              "RelativeDocumentMoniker": "OpenGL_Project01\\main.cpp",
-              "ToolTip": "C:\\Users\\TOP\\Documents\\GitHub\\OpenGL-Tutorial\\Window\\OpenGL_Project01\\OpenGL_Project01\\main.cpp",
-              "RelativeToolTip": "OpenGL_Project01\\main.cpp",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAkAAAAAAAAAA==",
+              "DocumentMoniker": "C:\\Users\\TOP\\Documents\\GitHub\\OpenGL-Tutorial\\Window\\OpenGL_Project01\\OpenGL_Project01\\src\\main.cpp",
+              "RelativeDocumentMoniker": "OpenGL_Project01\\src\\main.cpp",
+              "ToolTip": "C:\\Users\\TOP\\Documents\\GitHub\\OpenGL-Tutorial\\Window\\OpenGL_Project01\\OpenGL_Project01\\src\\main.cpp",
+              "RelativeToolTip": "OpenGL_Project01\\src\\main.cpp",
+              "ViewState": "AgIAAC0AAAAAAAAAAAAAADIAAAAXAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2025-03-31T00:11:20.157Z",
+              "WhenOpened": "2025-04-01T00:08:47.479Z",
               "EditorCaption": ""
             }
           ]

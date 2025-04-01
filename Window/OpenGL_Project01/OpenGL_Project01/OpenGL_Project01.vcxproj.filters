@@ -13,13 +13,19 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="소스 파일\src">
+      <UniqueIdentifier>{c1e68daa-6b00-4128-9e81-279335b960ea}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\lib">
+      <UniqueIdentifier>{740a81b2-26da-4420-9b4a-adeeb0521818}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="main.cpp">
-      <Filter>소스 파일</Filter>
+    <ClCompile Include="src\main.cpp">
+      <Filter>소스 파일\src</Filter>
     </ClCompile>
-    <ClCompile Include="glad.c">
-      <Filter>소스 파일</Filter>
+    <ClCompile Include="lib\glad.c">
+      <Filter>소스 파일\lib</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
