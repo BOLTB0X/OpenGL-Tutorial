@@ -1,9 +1,9 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\TOP\\Documents\\GitHub\\OpenGL-Tutorial\\Window\\OpenGL_Project02\\",
+  "WorkspaceRootPath": "C:\\Users\\TOP\\Documents\\GitHub\\OpenGL-Tutorial\\VisualStudioVer\\OpenGL_Project02\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{0750C2A8-1DE3-4CFF-8CCC-18F2B2CA563C}|OpenGL_Project02\\OpenGL_Project02.vcxproj|C:\\Users\\TOP\\Documents\\GitHub\\OpenGL-Tutorial\\Window\\OpenGL_Project02\\OpenGL_Project02\\src\\main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "AbsoluteMoniker": "D:0:0:{0750C2A8-1DE3-4CFF-8CCC-18F2B2CA563C}|OpenGL_Project02\\OpenGL_Project02.vcxproj|C:\\Users\\TOP\\Documents\\GitHub\\OpenGL-Tutorial\\VisualStudioVer\\OpenGL_Project02\\OpenGL_Project02\\src\\main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{0750C2A8-1DE3-4CFF-8CCC-18F2B2CA563C}|OpenGL_Project02\\OpenGL_Project02.vcxproj|solutionrelative:OpenGL_Project02\\src\\main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     }
   ],
@@ -20,11 +20,11 @@
               "$type": "Document",
               "DocumentIndex": 0,
               "Title": "main.cpp",
-              "DocumentMoniker": "C:\\Users\\TOP\\Documents\\GitHub\\OpenGL-Tutorial\\Window\\OpenGL_Project02\\OpenGL_Project02\\src\\main.cpp",
+              "DocumentMoniker": "C:\\Users\\TOP\\Documents\\GitHub\\OpenGL-Tutorial\\VisualStudioVer\\OpenGL_Project02\\OpenGL_Project02\\src\\main.cpp",
               "RelativeDocumentMoniker": "OpenGL_Project02\\src\\main.cpp",
-              "ToolTip": "C:\\Users\\TOP\\Documents\\GitHub\\OpenGL-Tutorial\\Window\\OpenGL_Project02\\OpenGL_Project02\\src\\main.cpp",
+              "ToolTip": "C:\\Users\\TOP\\Documents\\GitHub\\OpenGL-Tutorial\\VisualStudioVer\\OpenGL_Project02\\OpenGL_Project02\\src\\main.cpp",
               "RelativeToolTip": "OpenGL_Project02\\src\\main.cpp",
-              "ViewState": "AgIAAJwAAAAAAAAAAAAAAJgAAAAmAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2025-04-01T08:12:21.086Z",
               "EditorCaption": ""
