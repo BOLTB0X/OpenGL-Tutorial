@@ -27,6 +27,20 @@ const char* fragmentShaderSource = "#version 330 core\n"
 	"	FragColor = vec4(1.0f, 0.5f, 0.2f, 1.0f);\n"
 	"}\n\0";
 
+const char* fragmentShader1Source = "#version 330 core\n"
+	"out vec4 FragColor;\n"
+	"void main()\n"
+	"{\n"
+	"   FragColor = vec4(1.0f, 0.5f, 0.2f, 1.0f);\n"
+	"}\n\0";
+
+const char* fragmentShader2Source = "#version 330 core\n"
+	"out vec4 FragColor;\n"
+	"void main()\n"
+	"{\n"
+	"   FragColor = vec4(1.0f, 1.0f, 0.0f, 1.0f);\n"
+	"}\n\0";
+
 int main(void) {
 	// glfw: initialize and configure
 	// --------------------------------
@@ -63,23 +77,37 @@ int main(void) {
 	glCompileShader(vertexShader);
 
 	// Fragment shader
-	unsigned int fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
-	glShaderSource(fragmentShader, 1, &fragmentShaderSource, NULL);
-	glCompileShader(fragmentShader);
+	unsigned int fragmentShader1 = glCreateShader(GL_FRAGMENT_SHADER);
+	glShaderSource(fragmentShader1, 1, &fragmentShader1Source, NULL);
+	glCompileShader(fragmentShader1);
+
+	unsigned int fragmentShader2 = glCreateShader(GL_FRAGMENT_SHADER);
+	glShaderSource(fragmentShader2, 1, &fragmentShader2Source, NULL);
+	glCompileShader(fragmentShader2);
 
 	// link shaders
-	unsigned int shaderProgram = glCreateProgram();
-	glAttachShader(shaderProgram, vertexShader);
-	glAttachShader(shaderProgram, fragmentShader);
-	glLinkProgram(shaderProgram);
+	unsigned int shaderProgram1 = glCreateProgram();
+	unsigned int shaderProgram2 = glCreateProgram();
+
+	glAttachShader(shaderProgram1, vertexShader);
+	glAttachShader(shaderProgram1, fragmentShader1);
+	glLinkProgram(shaderProgram1);
+
+	glAttachShader(shaderProgram2, vertexShader);
+	glAttachShader(shaderProgram2, fragmentShader2);
+	glLinkProgram(shaderProgram2);
 
 	checkShaderCompiler(vertexShader, "VERTEX");
-	checkShaderCompiler(fragmentShader, "FRAGMENT");
-	checkShaderCompiler(shaderProgram, "LINKING");
+
+	checkShaderCompiler(fragmentShader1, "FRAGMENT");
+	checkShaderCompiler(fragmentShader2, "FRAGMENT");
+
+	checkShaderCompiler(shaderProgram1, "LINKING");
+	checkShaderCompiler(shaderProgram2, "LINKING");
 
 	glDeleteShader(vertexShader);
-	glDeleteShader(fragmentShader);
-
+	glDeleteShader(fragmentShader1);
+	glDeleteShader(fragmentShader2);
 
 	// Vertex 데이터 (and buffer(s)) 셋업 and configure Vertex attributes
 	// ------------------------------------------------------------------
@@ -96,6 +124,29 @@ int main(void) {
 		-0.5f,  0.5f, 0.0f   // top left 
 	};
 
+	float twinTriangleVertices[] = {
+		// 1
+		-0.9f, -0.5f, 0.0f,  // left 
+		-0.0f, -0.5f, 0.0f,  // right
+		-0.45f, 0.5f, 0.0f,  // top 
+		// 2
+		0.0f, -0.5f, 0.0f,  // left
+		0.9f, -0.5f, 0.0f,  // right
+		0.45f, 0.5f, 0.0f   // top   
+	};
+
+	float oneTriangle[] = {
+		-0.9f, -0.5f, 0.0f,  // left 
+		-0.0f, -0.5f, 0.0f,  // right
+		-0.45f, 0.5f, 0.0f,  // top 
+	};
+
+	float twoTriangle[] = {
+		0.0f, -0.5f, 0.0f,  // left
+		0.9f, -0.5f, 0.0f,  // right
+		0.45f, 0.5f, 0.0f   // top 
+	};
+
 	unsigned int indices[] = {
 			0, 1, 3,   // 1 triangle
 			1, 2, 3    // 2 triangle
@@ -105,34 +156,52 @@ int main(void) {
 	// VBO: Vertex 데이터(Vertex 좌표, UV 좌표, 색상, 법선 )를 GPU의 메모리에 저장하는 버퍼
 	// VAO: 여러 개의 VBO와 속성(Attribute) 설정을 저장하는 객체
 	// EBO: 인덱스 버퍼
-	unsigned int VBO, VAO, EBO;
+	
+	unsigned int VBOs[2], VAOs[2];
+	glGenVertexArrays(2, VAOs);
+	glGenBuffers(2, VBOs);
 
-	glGenVertexArrays(1, &VAO); // OpenGL에 Vertex 속성(좌표, 색상, 법선 등)이 어디에 있는지 지정해야 하는데, VAO가 이 역할을 대신해 줌
-	glGenBuffers(1, &VBO); // 저장하는 버퍼
-	glGenBuffers(1, &EBO); 
-
-	// 1. bind Vertex Array Object
-	// VAO를 먼저 바인딩, 바인딩하면 그 이후의 설정이 해당 VAO에 저장됨
-	glBindVertexArray(VAO);
-
-	// 2. copy our vertices array in a vertex buffer for OpenGL to use
-	glBindBuffer(GL_ARRAY_BUFFER, VBO);
-	glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
-
-	// 3. copy our index array in a element buffer for OpenGL to use
-	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
-	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
-
-	// 4. then set the vertex attributes pointers
+	// 1
+	glBindVertexArray(VAOs[0]);
+	glBindBuffer(GL_ARRAY_BUFFER, VBOs[0]);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(oneTriangle), oneTriangle, GL_STATIC_DRAW);
 	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
 	glEnableVertexAttribArray(0);
 
-	// glVertexAttribPointer에 대한 호출은 VBO를 정점 속성의 바인딩된 정점 버퍼 객체로 등록하므로 나중에 안전하게 바인딩을 해제할 수 있음
-	glBindBuffer(GL_ARRAY_BUFFER, 0);
+	// 2
+	glBindVertexArray(VAOs[1]);
+	glBindBuffer(GL_ARRAY_BUFFER, VBOs[1]);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(twoTriangle), twoTriangle, GL_STATIC_DRAW);
+	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
+	glEnableVertexAttribArray(0);
+	//unsigned int VBO, VAO;
 
-	// 나중에 VAO를 언바인딩하여 다른 VAO 호출이 실수로 이 VAO를 수정하지 않도록 할 수 있지만, 이런 일은 거의 발생하지 않음
-	// VAO를 수정하려면 어차피 glBindVertexArray를 호출해야 하므로 직접적으로 필요하지 않을 때는 일반적으로 VAO(또는 VBO)를 언바인딩하지 않음
-	glBindVertexArray(0);
+	//glGenVertexArrays(1, &VAO); // OpenGL에 Vertex 속성(좌표, 색상, 법선 등)이 어디에 있는지 지정해야 하는데, VAO가 이 역할을 대신해 줌
+	//glGenBuffers(1, &VBO); // 저장하는 버퍼
+	////glGenBuffers(1, &EBO); 
+
+	//// 1. bind Vertex Array Object
+	//// VAO를 먼저 바인딩, 바인딩하면 그 이후의 설정이 해당 VAO에 저장됨
+	//glBindVertexArray(VAO);
+
+	//// 2. copy our vertices array in a vertex buffer for OpenGL to use
+	//glBindBuffer(GL_ARRAY_BUFFER, VBO);
+	//glBufferData(GL_ARRAY_BUFFER, sizeof(twinTriangleVertices), twinTriangleVertices, GL_STATIC_DRAW);
+
+	//// 3. copy our index array in a element buffer for OpenGL to use
+	////glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
+	////glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
+
+	//// 4. then set the vertex attributes pointers
+	//glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
+	//glEnableVertexAttribArray(0);
+
+	//// glVertexAttribPointer에 대한 호출은 VBO를 정점 속성의 바인딩된 정점 버퍼 객체로 등록하므로 나중에 안전하게 바인딩을 해제할 수 있음
+	//glBindBuffer(GL_ARRAY_BUFFER, 0);
+
+	//// 나중에 VAO를 언바인딩하여 다른 VAO 호출이 실수로 이 VAO를 수정하지 않도록 할 수 있지만, 이런 일은 거의 발생하지 않음
+	//// VAO를 수정하려면 어차피 glBindVertexArray를 호출해야 하므로 직접적으로 필요하지 않을 때는 일반적으로 VAO(또는 VBO)를 언바인딩하지 않음
+	//glBindVertexArray(0);
 
 	// Render Loop
 	// ------------
@@ -147,11 +216,16 @@ int main(void) {
 		glClear(GL_COLOR_BUFFER_BIT);
 
 		// draw
-		glUseProgram(shaderProgram);
-		glBindVertexArray(VAO);
-		//glDrawArrays(GL_TRIANGLES, 0, 3);
-		glPolygonMode(GL_FRONT_AND_BACK, GL_LINE); // 와이어프레임 모드
-		glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+		glUseProgram(shaderProgram1);
+		glBindVertexArray(VAOs[0]);
+		glDrawArrays(GL_TRIANGLES, 0, 3);
+
+		glUseProgram(shaderProgram2);
+		glBindVertexArray(VAOs[1]);
+		glDrawArrays(GL_TRIANGLES, 0, 3);
+
+		//glPolygonMode(GL_FRONT_AND_BACK, GL_LINE); // 와이어프레임 모드
+		//glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
 
 		glfwSwapBuffers(window); // 렌더 반복 중에 렌더링하는 데 사용되는 색상 버퍼(GLFW 창의 각 픽셀에 대한 색상 값이 포함된 대형 2D 버퍼)를 스왑하여 화면에 출력으로 표시하는 함수
 		glfwPollEvents(); // 이벤트(키보드 입력, 마우스 이동)가 트리거 되는지 확인, window 상태 업데이트, (콜백 함수를 통해 등록 가능)
@@ -159,10 +233,11 @@ int main(void) {
 
 	// Optional: de-allocate
 	// ----------------------
-	glDeleteVertexArrays(1, &VAO);
-	glDeleteBuffers(1, &VBO);
-	glDeleteBuffers(1, &EBO);
-	glDeleteProgram(shaderProgram);
+	glDeleteVertexArrays(2, VAOs);
+	glDeleteBuffers(2, VBOs);
+	//glDeleteBuffers(1, &EBO);
+	glDeleteProgram(shaderProgram1);
+	glDeleteProgram(shaderProgram2);
 
 	// glfw: 종료하고 이전에 할당된 모든 GLFW 리소스를 해제
 	// -------------------------------------------------
