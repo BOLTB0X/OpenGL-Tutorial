@@ -1,6 +1,6 @@
 # OpenGL Study In Xcode
 
-![ㅎㅇ](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Ft1.daumcdn.net%2Fcfile%2Ftistory%2F24116F4354A805992E)
+![ㅎㅇ](https://dcimg1.dcinside.com/viewimage.php?id=3eadd823f7dd&no=24b0d769e1d32ca73dea81fa11d028311869dac7d33bec80aa651ee0de08d27219b1bfb91a852c35ec014370351be7dc0cbbd75354da7926397ce053e6f87acecc00e358edc62b01249d19)
 
 > 그래픽 및 이미지를 조작하는 데 사용할 수 있는 많은 기능들을 제공하는 API
 
