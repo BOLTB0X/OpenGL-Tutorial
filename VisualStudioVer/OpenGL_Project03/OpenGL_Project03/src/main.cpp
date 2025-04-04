@@ -100,7 +100,7 @@ int main(void) {
 	//	 0.0f,  0.5f, 0.0f   // top
 	//};
 
-	Shader ourShader("vertex_shader.vs", "fragment_shader.fs");
+	Shader ourShader("3_exercise03.vs", "3_exercise03.fs");
 
 	float vertices[] = {
 		// positions         // colors
@@ -160,6 +160,8 @@ int main(void) {
 		
 		// render the triangle
 		ourShader.use();
+		//ourShader.setFloat("xOffset", 0.5f);
+
 		glBindVertexArray(VAO);
 		glDrawArrays(GL_TRIANGLES, 0, 3);
 

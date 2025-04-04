@@ -38,5 +38,17 @@
     <None Include="fragment_shader.fs">
       <Filter>소스 파일\glsl</Filter>
     </None>
+    <None Include="3_exercise01.vs">
+      <Filter>소스 파일\glsl</Filter>
+    </None>
+    <None Include="3_exercise02.vs">
+      <Filter>소스 파일\glsl</Filter>
+    </None>
+    <None Include="3_exercise03.vs">
+      <Filter>소스 파일\glsl</Filter>
+    </None>
+    <None Include="3_exercise03.fs">
+      <Filter>소스 파일\glsl</Filter>
+    </None>
   </ItemGroup>
 </Project>

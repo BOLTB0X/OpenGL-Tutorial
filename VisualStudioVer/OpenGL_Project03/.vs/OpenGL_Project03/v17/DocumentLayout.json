@@ -3,16 +3,24 @@
   "WorkspaceRootPath": "C:\\Users\\TOP\\Documents\\GitHub\\OpenGL-Tutorial\\VisualStudioVer\\OpenGL_Project03\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{E65F5CF1-42AC-485A-B9C8-1044883C564B}|OpenGL_Project03\\OpenGL_Project03.vcxproj|C:\\Users\\TOP\\Documents\\GitHub\\OpenGL-Tutorial\\VisualStudioVer\\OpenGL_Project03\\OpenGL_Project03\\src\\main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{E65F5CF1-42AC-485A-B9C8-1044883C564B}|OpenGL_Project03\\OpenGL_Project03.vcxproj|solutionrelative:OpenGL_Project03\\src\\main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{E65F5CF1-42AC-485A-B9C8-1044883C564B}|OpenGL_Project03\\OpenGL_Project03.vcxproj|C:\\Users\\TOP\\Documents\\GitHub\\OpenGL-Tutorial\\VisualStudioVer\\OpenGL_Project03\\OpenGL_Project03\\fragment_shader.fs||{3B902123-F8A7-4915-9F01-361F908088D0}",
       "RelativeMoniker": "D:0:0:{E65F5CF1-42AC-485A-B9C8-1044883C564B}|OpenGL_Project03\\OpenGL_Project03.vcxproj|solutionrelative:OpenGL_Project03\\fragment_shader.fs||{3B902123-F8A7-4915-9F01-361F908088D0}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{E65F5CF1-42AC-485A-B9C8-1044883C564B}|OpenGL_Project03\\OpenGL_Project03.vcxproj|C:\\Users\\TOP\\Documents\\GitHub\\OpenGL-Tutorial\\VisualStudioVer\\OpenGL_Project03\\OpenGL_Project03\\vertex_shader.vs||{8B382828-6202-11D1-8870-0000F87579D2}",
-      "RelativeMoniker": "D:0:0:{E65F5CF1-42AC-485A-B9C8-1044883C564B}|OpenGL_Project03\\OpenGL_Project03.vcxproj|solutionrelative:OpenGL_Project03\\vertex_shader.vs||{8B382828-6202-11D1-8870-0000F87579D2}"
+      "AbsoluteMoniker": "D:0:0:{E65F5CF1-42AC-485A-B9C8-1044883C564B}|OpenGL_Project03\\OpenGL_Project03.vcxproj|C:\\Users\\TOP\\Documents\\GitHub\\OpenGL-Tutorial\\VisualStudioVer\\OpenGL_Project03\\OpenGL_Project03\\3_exercise03.vs||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{E65F5CF1-42AC-485A-B9C8-1044883C564B}|OpenGL_Project03\\OpenGL_Project03.vcxproj|solutionrelative:OpenGL_Project03\\3_exercise03.vs||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E65F5CF1-42AC-485A-B9C8-1044883C564B}|OpenGL_Project03\\OpenGL_Project03.vcxproj|C:\\Users\\TOP\\Documents\\GitHub\\OpenGL-Tutorial\\VisualStudioVer\\OpenGL_Project03\\OpenGL_Project03\\3_exercise02.vs||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{E65F5CF1-42AC-485A-B9C8-1044883C564B}|OpenGL_Project03\\OpenGL_Project03.vcxproj|solutionrelative:OpenGL_Project03\\3_exercise02.vs||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E65F5CF1-42AC-485A-B9C8-1044883C564B}|OpenGL_Project03\\OpenGL_Project03.vcxproj|C:\\Users\\TOP\\Documents\\GitHub\\OpenGL-Tutorial\\VisualStudioVer\\OpenGL_Project03\\OpenGL_Project03\\src\\main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{E65F5CF1-42AC-485A-B9C8-1044883C564B}|OpenGL_Project03\\OpenGL_Project03.vcxproj|solutionrelative:OpenGL_Project03\\src\\main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E65F5CF1-42AC-485A-B9C8-1044883C564B}|OpenGL_Project03\\OpenGL_Project03.vcxproj|C:\\Users\\TOP\\Documents\\GitHub\\OpenGL-Tutorial\\VisualStudioVer\\OpenGL_Project03\\OpenGL_Project03\\3_exercise03.fs||{3B902123-F8A7-4915-9F01-361F908088D0}",
+      "RelativeMoniker": "D:0:0:{E65F5CF1-42AC-485A-B9C8-1044883C564B}|OpenGL_Project03\\OpenGL_Project03.vcxproj|solutionrelative:OpenGL_Project03\\3_exercise03.fs||{3B902123-F8A7-4915-9F01-361F908088D0}"
     }
   ],
   "DocumentGroupContainers": [
@@ -22,45 +30,71 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "vertex_shader.vs",
-              "DocumentMoniker": "C:\\Users\\TOP\\Documents\\GitHub\\OpenGL-Tutorial\\VisualStudioVer\\OpenGL_Project03\\OpenGL_Project03\\vertex_shader.vs",
-              "RelativeDocumentMoniker": "OpenGL_Project03\\vertex_shader.vs",
-              "ToolTip": "C:\\Users\\TOP\\Documents\\GitHub\\OpenGL-Tutorial\\VisualStudioVer\\OpenGL_Project03\\OpenGL_Project03\\vertex_shader.vs",
-              "RelativeToolTip": "OpenGL_Project03\\vertex_shader.vs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAABAAAAAAAAAA==",
+              "DocumentIndex": 0,
+              "Title": "fragment_shader.fs",
+              "DocumentMoniker": "C:\\Users\\TOP\\Documents\\GitHub\\OpenGL-Tutorial\\VisualStudioVer\\OpenGL_Project03\\OpenGL_Project03\\fragment_shader.fs",
+              "RelativeDocumentMoniker": "OpenGL_Project03\\fragment_shader.fs",
+              "ToolTip": "C:\\Users\\TOP\\Documents\\GitHub\\OpenGL-Tutorial\\VisualStudioVer\\OpenGL_Project03\\OpenGL_Project03\\fragment_shader.fs",
+              "RelativeToolTip": "OpenGL_Project03\\fragment_shader.fs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
-              "WhenOpened": "2025-04-02T08:11:02.98Z",
+              "WhenOpened": "2025-04-03T07:45:50.774Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
+              "Title": "3_exercise03.vs",
+              "DocumentMoniker": "C:\\Users\\TOP\\Documents\\GitHub\\OpenGL-Tutorial\\VisualStudioVer\\OpenGL_Project03\\OpenGL_Project03\\3_exercise03.vs",
+              "RelativeDocumentMoniker": "OpenGL_Project03\\3_exercise03.vs",
+              "ToolTip": "C:\\Users\\TOP\\Documents\\GitHub\\OpenGL-Tutorial\\VisualStudioVer\\OpenGL_Project03\\OpenGL_Project03\\3_exercise03.vs",
+              "RelativeToolTip": "OpenGL_Project03\\3_exercise03.vs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAARAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2025-04-03T07:40:18.796Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "3_exercise02.vs",
+              "DocumentMoniker": "C:\\Users\\TOP\\Documents\\GitHub\\OpenGL-Tutorial\\VisualStudioVer\\OpenGL_Project03\\OpenGL_Project03\\3_exercise02.vs",
+              "RelativeDocumentMoniker": "OpenGL_Project03\\3_exercise02.vs",
+              "ToolTip": "C:\\Users\\TOP\\Documents\\GitHub\\OpenGL-Tutorial\\VisualStudioVer\\OpenGL_Project03\\OpenGL_Project03\\3_exercise02.vs",
+              "RelativeToolTip": "OpenGL_Project03\\3_exercise02.vs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2025-04-03T07:30:23.597Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
               "Title": "main.cpp",
               "DocumentMoniker": "C:\\Users\\TOP\\Documents\\GitHub\\OpenGL-Tutorial\\VisualStudioVer\\OpenGL_Project03\\OpenGL_Project03\\src\\main.cpp",
               "RelativeDocumentMoniker": "OpenGL_Project03\\src\\main.cpp",
               "ToolTip": "C:\\Users\\TOP\\Documents\\GitHub\\OpenGL-Tutorial\\VisualStudioVer\\OpenGL_Project03\\OpenGL_Project03\\src\\main.cpp",
               "RelativeToolTip": "OpenGL_Project03\\src\\main.cpp",
-              "ViewState": "AgIAALcAAAAAAAAAAAAAAMIAAAAOAAAAAAAAAA==",
+              "ViewState": "AgIAAF0AAAAAAAAAAAAAAGgAAAAVAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2025-04-02T04:43:04.947Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "fragment_shader.fs",
-              "DocumentMoniker": "C:\\Users\\TOP\\Documents\\GitHub\\OpenGL-Tutorial\\VisualStudioVer\\OpenGL_Project03\\OpenGL_Project03\\fragment_shader.fs",
-              "RelativeDocumentMoniker": "OpenGL_Project03\\fragment_shader.fs",
-              "ToolTip": "C:\\Users\\TOP\\Documents\\GitHub\\OpenGL-Tutorial\\VisualStudioVer\\OpenGL_Project03\\OpenGL_Project03\\fragment_shader.fs",
-              "RelativeToolTip": "OpenGL_Project03\\fragment_shader.fs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAABAAAAAAAAAA==",
+              "DocumentIndex": 4,
+              "Title": "3_exercise03.fs",
+              "DocumentMoniker": "C:\\Users\\TOP\\Documents\\GitHub\\OpenGL-Tutorial\\VisualStudioVer\\OpenGL_Project03\\OpenGL_Project03\\3_exercise03.fs",
+              "RelativeDocumentMoniker": "OpenGL_Project03\\3_exercise03.fs",
+              "ToolTip": "C:\\Users\\TOP\\Documents\\GitHub\\OpenGL-Tutorial\\VisualStudioVer\\OpenGL_Project03\\OpenGL_Project03\\3_exercise03.fs",
+              "RelativeToolTip": "OpenGL_Project03\\3_exercise03.fs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
-              "WhenOpened": "2025-04-02T08:11:23.835Z",
+              "WhenOpened": "2025-04-03T07:40:30.755Z",
               "EditorCaption": ""
             }
           ]

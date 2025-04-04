@@ -138,6 +138,10 @@
     <ClCompile Include="src\main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="3_exercise01.vs" />
+    <None Include="3_exercise02.vs" />
+    <None Include="3_exercise03.fs" />
+    <None Include="3_exercise03.vs" />
     <None Include="fragment_shader.fs" />
     <None Include="vertex_shader.vs" />
   </ItemGroup>
