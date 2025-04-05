@@ -1,0 +1,87 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\TOP\\Documents\\GitHub\\OpenGL-Tutorial\\VisualStudioVer\\OpenGL_Project05\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{E65F5CF1-42AC-485A-B9C8-1044883C564B}|OpenGL_Project05\\OpenGL_Project05.vcxproj|C:\\Users\\TOP\\Documents\\GitHub\\OpenGL-Tutorial\\VisualStudioVer\\OpenGL_Project05\\OpenGL_Project05\\src\\main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{E65F5CF1-42AC-485A-B9C8-1044883C564B}|OpenGL_Project05\\OpenGL_Project05.vcxproj|solutionrelative:OpenGL_Project05\\src\\main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E65F5CF1-42AC-485A-B9C8-1044883C564B}|OpenGL_Project05\\OpenGL_Project05.vcxproj|C:\\Users\\TOP\\Documents\\GitHub\\OpenGL-Tutorial\\VisualStudioVer\\OpenGL_Project05\\OpenGL_Project05\\glsl\\fragment_shader.fs||{3B902123-F8A7-4915-9F01-361F908088D0}",
+      "RelativeMoniker": "D:0:0:{E65F5CF1-42AC-485A-B9C8-1044883C564B}|OpenGL_Project05\\OpenGL_Project05.vcxproj|solutionrelative:OpenGL_Project05\\glsl\\fragment_shader.fs||{3B902123-F8A7-4915-9F01-361F908088D0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E65F5CF1-42AC-485A-B9C8-1044883C564B}|OpenGL_Project05\\OpenGL_Project05.vcxproj|C:\\Users\\TOP\\Documents\\GitHub\\OpenGL-Tutorial\\VisualStudioVer\\OpenGL_Project05\\OpenGL_Project05\\glsl\\vertex_shader.vs||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{E65F5CF1-42AC-485A-B9C8-1044883C564B}|OpenGL_Project05\\OpenGL_Project05.vcxproj|solutionrelative:OpenGL_Project05\\glsl\\vertex_shader.vs||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E65F5CF1-42AC-485A-B9C8-1044883C564B}|OpenGL_Project05\\OpenGL_Project05.vcxproj|C:\\OPENGL\\INCLUDE\\COMMON\\SHADER_S.H||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "main.cpp",
+              "DocumentMoniker": "C:\\Users\\TOP\\Documents\\GitHub\\OpenGL-Tutorial\\VisualStudioVer\\OpenGL_Project05\\OpenGL_Project05\\src\\main.cpp",
+              "RelativeDocumentMoniker": "OpenGL_Project05\\src\\main.cpp",
+              "ToolTip": "C:\\Users\\TOP\\Documents\\GitHub\\OpenGL-Tutorial\\VisualStudioVer\\OpenGL_Project05\\OpenGL_Project05\\src\\main.cpp",
+              "RelativeToolTip": "OpenGL_Project05\\src\\main.cpp",
+              "ViewState": "AgIAAJYAAAAAAAAAAAAAwKEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-04-05T06:19:42.665Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "fragment_shader.fs",
+              "DocumentMoniker": "C:\\Users\\TOP\\Documents\\GitHub\\OpenGL-Tutorial\\VisualStudioVer\\OpenGL_Project05\\OpenGL_Project05\\glsl\\fragment_shader.fs",
+              "RelativeDocumentMoniker": "OpenGL_Project05\\glsl\\fragment_shader.fs",
+              "ToolTip": "C:\\Users\\TOP\\Documents\\GitHub\\OpenGL-Tutorial\\VisualStudioVer\\OpenGL_Project05\\OpenGL_Project05\\glsl\\fragment_shader.fs",
+              "RelativeToolTip": "OpenGL_Project05\\glsl\\fragment_shader.fs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2025-04-05T06:37:55.308Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "vertex_shader.vs",
+              "DocumentMoniker": "C:\\Users\\TOP\\Documents\\GitHub\\OpenGL-Tutorial\\VisualStudioVer\\OpenGL_Project05\\OpenGL_Project05\\glsl\\vertex_shader.vs",
+              "RelativeDocumentMoniker": "OpenGL_Project05\\glsl\\vertex_shader.vs",
+              "ToolTip": "C:\\Users\\TOP\\Documents\\GitHub\\OpenGL-Tutorial\\VisualStudioVer\\OpenGL_Project05\\OpenGL_Project05\\glsl\\vertex_shader.vs",
+              "RelativeToolTip": "OpenGL_Project05\\glsl\\vertex_shader.vs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2025-04-05T06:37:54.446Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "shader_s.h",
+              "DocumentMoniker": "C:\\OpenGL\\include\\common\\shader_s.h",
+              "RelativeDocumentMoniker": "..\\..\\..\\..\\..\\..\\..\\OpenGL\\include\\common\\shader_s.h",
+              "ToolTip": "C:\\OpenGL\\include\\common\\shader_s.h",
+              "RelativeToolTip": "..\\..\\..\\..\\..\\..\\..\\OpenGL\\include\\common\\shader_s.h",
+              "ViewState": "AgIAAHwAAAAAAAAAAAAcwIAAAABGAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-04-05T06:51:37.121Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
