@@ -1,6 +1,6 @@
 # OpenGL Study In Xcode
 
-![ㅎㅇ](https://dcimg1.dcinside.com/viewimage.php?id=3eadd823f7dd&no=24b0d769e1d32ca73dea81fa11d028311869dac7d33bec80aa651ee0de08d27219b1bfb91a852c35ec014370351be7dc0cbbd75354da7926397ce053e6f87acecc00e358edc62b01249d19)
+![ㅎㅇ](https://i.pinimg.com/originals/7c/49/a6/7c49a6d9cf08c29fb6228fa4fe258a89.gif)
 
 > 그래픽 및 이미지를 조작하는 데 사용할 수 있는 많은 기능들을 제공하는 API
 
