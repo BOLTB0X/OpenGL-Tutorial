@@ -248,7 +248,6 @@
    ```
 
    </details>
-      <br/>
 
 
 - **Vertex 데이터 (and 버퍼) 셋업**
@@ -339,8 +338,6 @@
        VAO를 수정하려면 어차피 `glBindVertexArray`를 호출해야 하므로 직접적으로 필요하지 않을 때는 일반적으로 VAO(또는 VBO)를 언바인딩하지 않음
        
    </details>
-      <br/>
-
 
 - **draw**
 
@@ -375,7 +372,6 @@
   glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
   ```
   </details>
-    <br/>
 
 **Exercises**
 
@@ -563,7 +559,6 @@
    ```
 
    </details>
-      <br/>
 
 [전체 프로젝트 코드(C++)](https://github.com/BOLTB0X/OpenGL-Study/blob/main/VisualStudioVer/OpenGL_Project02/OpenGL_Project02/src/main.cpp)
   
@@ -733,7 +728,6 @@
    ```
 
    </details>
-   <br/>
 
 - Custom Shader Class
 
@@ -884,7 +878,6 @@
    ```
 
    </details>
-   <br/>
 
 **Exercises**
 
@@ -1023,11 +1016,9 @@
    삼각형의 왼쪽 아래 정점이 `(0,0,0)` 이라 검은색이 되고, 나머지 부분이 부드럽게 보간되면서 자연스럽게 색상이 변함
 
    </details>
-   <br/>
 
 [전체 프로젝트 코드(C++)](https://github.com/BOLTB0X/OpenGL-Study/tree/main/VisualStudioVer/OpenGL_Project03)
   
-
 </details>
 
 <details>
@@ -1248,7 +1239,6 @@
    ```
 
    </details>
-   <br/>
 
 - GLSL
 
@@ -1318,7 +1308,6 @@
    }
    ```
    </details>
-   <br/>
 
 **Exercises**
 
@@ -1511,7 +1500,6 @@
    ```
 
    </details>
-      <br/>
 
 [전체 프로젝트 코드(C++)](https://github.com/BOLTB0X/OpenGL-Study/blob/main/VisualStudioVer/OpenGL_Project02/OpenGL_Project02/src/main.cpp)
 
@@ -1519,6 +1507,208 @@
 
 <details>
 <summary> Transformations </summary>
+
+**Practice**
+
+<p align="center">
+  <table style="width:100%; text-align:center; border-spacing:5px;">
+    <tr>
+      <td style="text-align:center; vertical-align:middle;">
+        <p align="center">
+        <img src="https://github.com/BOLTB0X/OpenGL-Study/blob/main/Img/5-1-Transforms.jpg?raw=true" alt="Example Image" width="70%"/>
+        </p>
+      </td>
+      <td style="text-align:center; vertical-align:middle;">
+        <p align="center">
+        <img src="https://github.com/BOLTB0X/OpenGL-Study/blob/main/Img/5-2-Transforms.gif?raw=true" alt="Example Image" width="70%"/>
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <td style="text-align:center; font-size:14px; font-weight:bold;">
+      <p align="center">
+      90 Rotate
+      </p>
+      </td>
+      <td style="text-align:center; font-size:14px; font-weight:bold;">
+      <p align="center">
+      Rotate 
+      </p>
+      </td>
+    </tr>
+  </table>
+</p>
+
+- [glm](https://glm.g-truc.net/0.9.8/index.html)
+
+   > GLM stands for OpenGL Mathematics and is a header-only library, which means that we only have to include the proper header files and we're done; no linking and compiling necessary.
+
+   ```cpp
+   #include <glm/glm.hpp>
+   #include <glm/gtc/matrix_transform.hpp>
+   #include <glm/gtc/type_ptr.hpp>
+   ```
+
+   <details>
+   <summary> 90 Rotate </summary>
+
+   ```cpp
+   // Vertex Shader
+   #version 330 core
+   layout (location = 0) in vec3 aPos;
+   layout (location = 1) in vec2 aTexCoord;
+
+   out vec2 TexCoord;
+
+   uniform mat4 transform;
+
+   void main() {
+	   gl_Position = transform * vec4(aPos, 1.0);
+	   TexCoord = vec2(aTexCoord.x, aTexCoord.y);
+   }
+   ```
+
+   ```cpp
+   // Render Loop
+   // ------------
+   while (!glfwWindowShouldClose(window)) {
+      // ...
+
+      glm::mat4 trans = glm::mat4(1.0f);
+      trans = glm::rotate(trans, glm::radians(90.0f), glm::vec3(0.0, 0.0, 1.0));
+      trans = glm::scale(trans, glm::vec3(0.5, 0.5, 0.5));
+
+      // ...
+
+      unsigned int transformLoc = glGetUniformLocation(ourShader.ID, "transform");
+      glUniformMatrix4fv(transformLoc, 1, GL_FALSE, glm::value_ptr(trans));
+
+      // ...
+   }
+   ```
+
+   </details>
+
+   <details>
+   <summary> Rotate </summary>
+
+      ```cpp
+   // Render Loop
+   // ------------
+   while (!glfwWindowShouldClose(window)) {
+      // ...
+      // 
+      
+      glm::mat4 transform = glm::mat4(1.0f); // make sure to initialize matrix to identity matrix first
+      transform = glm::translate(transform, glm::vec3(0.5f, -0.5f, 0.0f));
+      transform = glm::rotate(transform, (float)glfwGetTime(), glm::vec3(0.0f, 0.0f, 1.0f));*/
+
+      // render the container
+      ourShader.use();
+      unsigned int transformLoc = glGetUniformLocation(ourShader.ID, "transform");
+      glUniformMatrix4fv(transformLoc, 1, GL_FALSE, glm::value_ptr(transform));
+      // ...
+   }
+   ```
+
+   </details>
+
+**Exercise**
+
+<p align="center">
+  <table style="width:100%; text-align:center; border-spacing:5px;">
+    <tr>
+      <td style="text-align:center; vertical-align:middle;">
+        <p align="center">
+        <img src="https://github.com/BOLTB0X/OpenGL-Study/blob/main/Img/5-1-Exercise01.gif?raw=true" alt="Example Image" width="70%"/>
+        </p>
+      </td>
+      <td style="text-align:center; vertical-align:middle;">
+        <p align="center">
+        <img src="https://github.com/BOLTB0X/OpenGL-Study/blob/main/Img/5-1-Exercise02.gif?raw=true" alt="Example Image" width="70%"/>
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <td style="text-align:center; font-size:14px; font-weight:bold;">
+      <p align="center">
+      ex01
+      </p>
+      </td>
+      <td style="text-align:center; font-size:14px; font-weight:bold;">
+      <p align="center">
+      ex02 
+      </p>
+      </td>
+    </tr>
+  </table>
+</p>
+
+- Solution
+
+   <details>
+   <summary> Exercise 01 sol </summary>
+
+   컨테이너에서 마지막 변환을 사용하여 먼저 회전한 다음 변환하여 순서를 바꿔보세요.
+   
+   무슨 일이 일어나는지 보고 왜 이런 일이 일어나는지 추론해보세요.
+
+   ```cpp
+   glm::mat4 transform = glm::mat4(1.0f);
+   transform = glm::rotate(transform, (float)glfwGetTime(), glm::vec3(0.0f, 0.0f, 1.0f));
+	 transform = glm::translate(transform, glm::vec3(0.5f, -0.5f, 0.0f));
+   ```
+
+   행렬 곱셈은 역순으로 적용된다는 점을 기억하라고 솔루션에서 말함
+   
+   - 변환이 먼저 적용되어, 화면 오른쪽 하단에 배치
+   - 변환 후 회전이 변환된 컨테이너에 적용
+   
+   **회전 변환**은 선형 대수학을 조금 더 깊이 파고들 때 기저 변경 변환이라고도 함
+   
+   > 컨테이너의 기저를 변경하기 때문에 다음 결과 변환은 새 기저 벡터를 기준으로 컨테이너를 변환합니다. 벡터가 약간 회전되면 수직 변환도 약간 변환됩니다.
+   
+   > 먼저 회전을 적용하면 회전 원점 `(0,0,0)`을 중심으로 해결되지만 컨테이너가 먼저 변환되므로 회전 원점이 더 이상 `(0,0,0)`이 아니므로 장면의 원점을 중심으로 도는 것처럼 보입니다.
+
+   > 이것을 시각화하거나 파악하는 데 어려움이 있다면 걱정하지 마세요. 변환을 실험하면 곧 이해할 수 있을 것입니다.
+   </details>
+
+   <details>
+   <summary> Exercise 02 sol </summary>
+
+   `glDrawElements` 에 대한 다른 호출로 두 번째 컨테이너를 그려보지만 변환만 사용하여 다른 위치에 배치합니다.
+   
+   이 두 번째 컨테이너가 창의 왼쪽 상단에 배치되었는지 확인하고 회전하는 대신 시간에 따라 크기를 조정합니다
+   
+   (여기서는 sin 함수를 사용하는 것이 유용합니다. sin을 사용하면 음수 크기가 적용되자마자 객체가 반전됩니다)
+
+   ```cpp
+   glm::mat4 transform = glm::mat4(1.0f);
+   // 1
+   transform = glm::translate(transform, glm::vec3(0.5f, -0.5f, 0.0f));
+   transform = glm::rotate(transform, (float)glfwGetTime(), glm::vec3(0.0f, 0.0f, 1.0f));
+        
+   unsigned int transformLoc = glGetUniformLocation(ourShader.ID, "transform");
+   glUniformMatrix4fv(transformLoc, 1, GL_FALSE, glm::value_ptr(transform));
+
+   glBindVertexArray(VAO);
+   glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+
+   // 2
+   transform = glm::mat4(1.0f);
+   transform = glm::translate(transform, glm::vec3(-0.5f, 0.5f, 0.0f));
+   float scaleAmount = static_cast<float>(sin(glfwGetTime())); // 1
+   transform = glm::scale(transform, glm::vec3(scaleAmount, scaleAmount, scaleAmount));
+   glUniformMatrix4fv(transformLoc, 1, GL_FALSE, &transform[0][0]); //2
+
+   glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+   ```
+
+   - 1 : `static_cast<float>(sin(glfwGetTime()))` 을 값으로 `glm::scale` 효과 적용
+   - 2 : 행렬 값 배열의 첫 번째 요소를 메모리 포인터 값으로 사용
+
+   </details>
+
 </details>
 
 ## 참고
