@@ -1,0 +1,8 @@
+﻿C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(520,5): warning MSB8004: Output 디렉터리가 슬래시로 끝나지 않습니다. Output 디렉터리의 적절한 평가를 허용하는 데 필요하므로 이 빌드 인스턴스에서 슬래시를 추가합니다.
+  main.cpp
+C:\OpenGL\include\GLFW\glfw3.h(3235,1): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+  (소스 파일 'src/main.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\TOP\Documents\GitHub\OpenGL-Tutorial\VisualStudioVer\OpenGL_Project06\OpenGL_Project06\src\main.cpp(253,42): warning C4244: '=': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+     .\build\OpenGL_Project06.lib 라이브러리 및 .\build\OpenGL_Project06.exp 개체를 생성하고 있습니다.
+  OpenGL_Project06.vcxproj -> C:\Users\TOP\Documents\GitHub\OpenGL-Tutorial\VisualStudioVer\OpenGL_Project06\OpenGL_Project06\build\OpenGL_Project06.exe
