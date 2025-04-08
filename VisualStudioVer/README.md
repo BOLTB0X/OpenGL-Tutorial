@@ -1592,7 +1592,7 @@
    <details>
    <summary> Rotate </summary>
 
-      ```cpp
+   ```cpp
    // Render Loop
    // ------------
    while (!glfwWindowShouldClose(window)) {
@@ -1711,8 +1711,811 @@
 
 </details>
 
+<details>
+<summary> Coordinate Systems </summary>
+
+**Practice**
+
+<p align="center">
+  <table style="width:100%; text-align:center; border-spacing:5px;">
+    <tr>
+      <td style="text-align:center; vertical-align:middle;">
+        <p align="center">
+        <img src="https://github.com/BOLTB0X/OpenGL-Study/blob/main/Img/6-1-Coordinate%20Systems-Going3D.jpg?raw=true" alt="Example Image" width="70%"/>
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <td style="text-align:center; font-size:14px; font-weight:bold;">
+      <p align="center">
+      Going 3D
+      </p>
+      </td>
+    </tr>
+  </table>
+</p>
+
+- [Space](https://github.com/BOLTB0X/Metal-API/blob/main/OpenGL-Tutorial-Metal/StudyMd/Space.md)
+
+   <details>
+   <summary> Going 3D </summary>
+
+   모든 객체의 Vertex를 Global World 공간으로 변환하는 데 적용하려는 **Translations** , **Scaling** and/or **Rotations** 으로 구성
+
+   ```cpp
+   glm::mat4 model = glm::mat4(1.0f);
+   glm::mat4 view = glm::mat4(1.0f);
+   glm::mat4 projection = glm::mat4(1.0f);
+
+   // ...
+
+   model = glm::rotate(model, glm::radians(-55.0f), glm::vec3(1.0f, 0.0f, 0.0f));
+   view = glm::translate(view, glm::vec3(0.0f, 0.0f, -3.0f));
+   projection = glm::perspective(glm::radians(45.0f), (float)SCR_WIDTH / (float)SCR_HEIGHT, 0.1f, 100.0f);
+   ```
+
+   ```cpp
+   // Vertex Shader
+   #version 330 core
+   layout (location = 0) in vec3 aPos;
+   layout (location = 1) in vec2 aTexCoord;
+
+   out vec2 TexCoord;
+
+   uniform mat4 model;
+   uniform mat4 view;
+   uniform mat4 projection;
+
+   void main()
+   {
+	    gl_Position = projection * view * model * vec4(aPos, 1.0);
+	    TexCoord = vec2(aTexCoord.x, aTexCoord.y);
+   }
+   ```
+   </details>
+
+<p align="center">
+  <table style="width:100%; text-align:center; border-spacing:5px;">
+    <tr>
+      <td style="text-align:center; vertical-align:middle;">
+        <p align="center">
+        <img src="https://github.com/BOLTB0X/OpenGL-Study/blob/main/Img/6-2-Coordinate%20Systems-More3D.gif?raw=true" alt="Example Image" width="70%"/>
+        </p>
+      </td>
+      <td style="text-align:center; vertical-align:middle;">
+        <p align="center">
+        <img src="https://github.com/BOLTB0X/OpenGL-Study/blob/main/Img/6-3-Coordinate%20Systems-DetphTest.gif?raw=true" alt="Example Image" width="70%"/>
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <td style="text-align:center; font-size:14px; font-weight:bold;">
+      <p align="center">
+      Depth X
+      </p>
+      </td>
+      <td style="text-align:center; font-size:14px; font-weight:bold;">
+      <p align="center">
+      Depth O 
+      </p>
+      </td>
+    </tr>
+  </table>
+</p>
+
+- More 3D
+
+   <details>
+   <summary> Going 3D </summary>
+
+   3D 공간으로 큐브를 렌더링하려면 총 **36** 개의 **Vertex(면 6개 * 삼각형 2개 * 각각 정점 3개)** 가 필요함
+
+   ```cpp
+   float vertices[] = {
+      -0.5f, -0.5f, -0.5f,  0.0f, 0.0f,
+      0.5f, -0.5f, -0.5f,  1.0f, 0.0f,
+      0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
+      0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
+      -0.5f,  0.5f, -0.5f,  0.0f, 1.0f,
+      -0.5f, -0.5f, -0.5f,  0.0f, 0.0f,
+
+      -0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
+      0.5f, -0.5f,  0.5f,  1.0f, 0.0f,
+      0.5f,  0.5f,  0.5f,  1.0f, 1.0f,
+      0.5f,  0.5f,  0.5f,  1.0f, 1.0f,
+      -0.5f,  0.5f,  0.5f,  0.0f, 1.0f,
+      -0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
+
+      -0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
+      -0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
+      -0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
+      -0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
+      -0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
+      -0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
+
+      0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
+      0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
+      0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
+      0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
+      0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
+      0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
+
+      -0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
+      0.5f, -0.5f, -0.5f,  1.0f, 1.0f,
+      0.5f, -0.5f,  0.5f,  1.0f, 0.0f,
+      0.5f, -0.5f,  0.5f,  1.0f, 0.0f,
+      -0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
+      -0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
+
+      -0.5f,  0.5f, -0.5f,  0.0f, 1.0f,
+      0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
+      0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
+      0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
+      -0.5f,  0.5f,  0.5f,  0.0f, 0.0f,
+      -0.5f,  0.5f, -0.5f,  0.0f, 1.0f
+   };
+   ```
+
+   ```cpp
+   // 회전 적용
+   model = glm::rotate(model, (float)glfwGetTime() * glm::radians(50.0f), glm::vec3(0.5f, 1.0f, 0.0f));  
+   ```
+
+   ```cpp
+   glDrawArrays(GL_TRIANGLES, 0, 36);
+   ```
+
+   </details>
+
+- Z-buffer
+
+   <details>
+   <summary> Depth Test </summary>
+   
+   OpenGL은 모든 깊이 정보를 **Z-Buffer** , 즉 **Depth 버퍼**에 저장함 
+
+   `GLFW`는 자동으로 이러한 버퍼를 만드는 데(출력 이미지의 색상을 저장하는 색상 버퍼가 있는 것처럼) 
+
+   **Depth** 는 각 `fragments` 내에 저장되고(`fragments` 의 `z` 값으로) `fragment` 가 색상을 출력하려고 할 때마다 
+
+   OpenGL은 **depth** 값을 **Z-Buffer** 와 비교함
+
+   현재 fragment이 다른 fragment 뒤에 있으면 삭제되고 그렇지 않으면 덮어쓰는 것 
+
+   이 프로세스를 Depth라고 하며 OpenGL에서 자동으로 수행함
+
+   하지만 OpenGL이 실제로 깊이 테스트를 수행하는지 확인하려면 먼저 OpenGL에 깊이 테스트를 활성화하겠다고 알려야 함 
+
+   **Detph Test** 는 디폴트로 비활성화되어 있음 
+   
+   `glEnable`을 사용하여 깊이 테스트를 활성화 가능
+   
+   `glEnable` 및 `glDisable` 함수를 사용하면 OpenGL에서 특정 기능을 활성화/비활성화할 수 있음 
+   
+   그런 다음 해당 기능은 비활성화/활성화하기 위한 다른 호출이 이루어질 때까지 활성화/비활성화 되는 것 
+
+   또한 **Depth 버퍼** 를 사용하고 있으므로 각 렌더링 반복 전에 깊이 버퍼를 비워야 함(그렇지 않으면 이전 프레임의 깊이 정보가 버퍼에 남음)
+   
+   | 동작               | 함수                          | 설명                              |
+   |------------------|--------------------------------|----------------------------------|
+   | 깊이 테스트 활성화 | `glEnable(GL_DEPTH_TEST)`     | 깊이 비교 기능 켜기              |
+   | 깊이 테스트 비활성화 | `glDisable(GL_DEPTH_TEST)`   | 깊이 비교 기능 끄기              |
+   | 깊이 버퍼 초기화   | `glClear(GL_DEPTH_BUFFER_BIT)` | 이전 프레임 깊이 정보 지우기     |
+
+   </details>
+
+   <details>
+   <summary> 코드 </summary>
+
+   ```cpp
+   // Depth 활성화
+   glEnable(GL_DEPTH_TEST);
+   ```
+
+   ```cpp
+   // 버퍼 초기화
+   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+   ```
+
+   </details>
+
+<p align="center">
+  <table style="width:100%; text-align:center; border-spacing:5px;">
+    <tr>
+      <td style="text-align:center; vertical-align:middle;">
+        <p align="center">
+        <img src="https://github.com/BOLTB0X/OpenGL-Study/blob/main/Img/6-4-Coordinate%20Systems-MoreCube.jpg?raw=true" alt="Example Image" width="70%"/>
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <td style="text-align:center; font-size:14px; font-weight:bold;">
+      <p align="center">
+      More Cubes
+      </p>
+      </td>
+    </tr>
+  </table>
+</p>
+
+- 코드
+
+   <details>
+   <summary> 코드 보기 </summary>
+
+   ```cpp
+   glm::vec3 cubePositions[] = {
+    glm::vec3( 0.0f,  0.0f,  0.0f), 
+    glm::vec3( 2.0f,  5.0f, -15.0f), 
+    glm::vec3(-1.5f, -2.2f, -2.5f),  
+    glm::vec3(-3.8f, -2.0f, -12.3f),  
+    glm::vec3( 2.4f, -0.4f, -3.5f),  
+    glm::vec3(-1.7f,  3.0f, -7.5f),  
+    glm::vec3( 1.3f, -2.0f, -2.5f),  
+    glm::vec3( 1.5f,  2.0f, -2.5f), 
+    glm::vec3( 1.5f,  0.2f, -1.5f), 
+    glm::vec3(-1.3f,  1.0f, -1.5f)  
+   };
+   ```
+
+   ```cpp
+   while (!glfwWindowShouldClose(window)) {
+      // ...
+
+      glBindVertexArray(VAO);
+      for(unsigned int i = 0; i < 10; i++) {
+          glm::mat4 model = glm::mat4(1.0f);
+          model = glm::translate(model, cubePositions[i]);
+          float angle = 20.0f * i; 
+          model = glm::rotate(model, glm::radians(angle), glm::vec3(1.0f, 0.3f, 0.5f));
+          ourShader.setMat4("model", model);
+
+          glDrawArrays(GL_TRIANGLES, 0, 36);
+      }
+
+      // ...
+   }
+   ```
+
+   </details>
+
+**Exercises**
+
+<p align="center">
+  <table style="width:100%; text-align:center; border-spacing:5px;">
+    <tr>
+      <td style="text-align:center; vertical-align:middle;">
+        <p align="center">
+        <img src="https://github.com/BOLTB0X/OpenGL-Study/blob/main/Img/6-Exercise01.jpg?raw=true" alt="Example Image" width="70%"/>
+        </p>
+      </td>
+      <td style="text-align:center; vertical-align:middle;">
+        <p align="center">
+        <img src="https://github.com/BOLTB0X/OpenGL-Study/blob/main/Img/6-Exercise02.jpg?raw=true" alt="Example Image" width="70%"/>
+        </p>
+      </td>
+      <td style="text-align:center; vertical-align:middle;">
+        <p align="center">
+        <img src="https://github.com/BOLTB0X/OpenGL-Study/blob/main/Img/6-Exercise03.gif?raw=true" alt="Example Image" width="70%"/>
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <td style="text-align:center; font-size:14px; font-weight:bold;">
+      <p align="center">
+      ex01
+      </p>
+      </td>
+      <td style="text-align:center; font-size:14px; font-weight:bold;">
+      <p align="center">
+      ex02
+      </p>
+      </td>
+      <td style="text-align:center; font-size:14px; font-weight:bold;">
+      <p align="center">
+      ex03
+      </p>
+      </td>
+    </tr>
+  </table>
+</p>
+
+- Solution
+
+   <details>
+   <summary> Exercise 01 sol </summary>
+
+   **GLM** 의 `glm::perspective` (투영 함수) 의 `FoV` 와 종횡비 매개변수를 실험해보세요.
+   
+   이것들이 원근법 절두체에 어떤 영향을 미치는지 알아낼 수 있는지 알아보세요.
+
+   ```cpp
+   model = glm::rotate(model, glm::radians(-55.0f), glm::vec3(1.0f, 0.0f, 0.0f));
+   ```
+
+   </details>
+
+   <details>
+   <summary> Exercise 02 sol </summary>
+
+   여러 방향으로 변환하여 뷰 매트릭스를 가지고 놀고 장면이 어떻게 바뀌는지 살펴보세요.
+   
+   뷰 매트릭스를 카메라 객체로 생각해보세요.
+
+   ```cpp
+   view = glm::translate(view, glm::vec3(1.0f, 1.0f, 5.0f));
+   ```
+
+   </details>
+
+   <details>
+   <summary> Exercise 03 sol </summary>
+
+   **model matrix** 만 사용하여 다른 컨테이너는 고정한 채로 두고 3번째 컨테이너(첫 번째 컨테이너 포함)가 시간이 지남에 따라 회전하도록 해보세요.
+
+   ```cpp
+   for (unsigned int i = 0; i < 10; i++) {
+			glm::mat4 model = glm::mat4(1.0f);
+			model = glm::translate(model, cubePositions[i]);
+			float angle = 20.0f * i;
+			if (i % 3 == 0) angle = glfwGetTime() * 25.0f;
+			model = glm::rotate(model, glm::radians(angle), glm::vec3(1.0f, 0.3f, 0.5f));
+			ourShader.setMat4("model", model);
+
+			glDrawArrays(GL_TRIANGLES, 0, 36);
+	 }
+   ```
+
+   </details>
+
+</details>
+
+<details>
+<summary> Camera </summary>
+
+**Practice**
+
+<p align="center">
+  <table style="width:100%; text-align:center; border-spacing:5px;">
+    <tr>
+      <td style="text-align:center; vertical-align:middle;">
+        <p align="center">
+        <img src="https://github.com/BOLTB0X/OpenGL-Study/blob/main/Img/7-1-Camera-Camera_View%20space.gif?raw=true" alt="Example Image" width="70%"/>
+        </p>
+      </td>
+      <td style="text-align:center; vertical-align:middle;">
+        <p align="center">
+        <img src="https://github.com/BOLTB0X/OpenGL-Study/blob/main/Img/7-2-Camera-Walk%20around.gif?raw=true" alt="Example Image" width="70%"/>
+        </p>
+      </td>
+      <td style="text-align:center; vertical-align:middle;">
+        <p align="center">
+        <img src="https://github.com/BOLTB0X/OpenGL-Study/blob/main/Img/7-3-Camera-Look%20around.gif?raw=true" alt="Example Image" width="70%"/>
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <td style="text-align:center; font-size:14px; font-weight:bold;">
+      <p align="center">
+      Camera View space
+      </p>
+      </td>
+      <td style="text-align:center; font-size:14px; font-weight:bold;">
+      <p align="center">
+      Walk around
+      </p>
+      </td>
+      <td style="text-align:center; font-size:14px; font-weight:bold;">
+      <p align="center">
+      Look around
+      </p>
+      </td>
+    </tr>
+  </table>
+</p>
+
+- Camera View space
+
+   <details>
+   <summary> Camera/View space </summary>
+
+   <p align="center">
+      <img src="https://learnopengl.com/img/getting-started/camera_axes.png" alt="Example Image" width="80%">
+      <br/>
+      이미지 출처: learnopengl.com
+   </p>
+
+   1. **Camera position**
+
+      카메라의 위치를 ​​가리키는 **World Space** 의 벡터
+
+      ```cpp
+      glm::vec3 cameraPos = glm::vec3(0.0f, 0.0f, 3.0f);
+      ```
+
+   2. **Camera direction**
+
+      카메라의 방향, 즉 *카메라가 가리키는 방향 벡터*가 필요
+
+      아래 코드는 카메라가 **scene** 의 원점` (0,0,0)`을 가리키도록 함
+
+      **scene** 의 **원점 벡터** 에서 카메라 위치 벡터를 빼면 원하는 방향 벡터가 나옴
+
+      ```cpp
+      glm::vec3 cameraTarget = glm::vec3(0.0f, 0.0f, 0.0f);
+      ```
+
+      View matrix의 좌표계의 경우 `z`축이 양수이기를 원하고 관례에 따라(OpenGL에서) 카메라가 음수 `z`축을 가리키기 때문에 방향 벡터를 부정해야 함
+
+      빼기 순서를 바꾸면 이제 카메라의 양수 `z`축을 가리키는 벡터를 얻는 것
+
+      ```cpp
+      glm::vec3 cameraDirection = glm::normalize(cameraPos - cameraTarget);
+      ```
+
+   3. **Right axis**
+
+      카메라 공간의 양의 `x`축을 나타내는 *오른쪽 벡터*가 필요 
+     
+      이를 구하기 위해 먼저 위쪽을 가리키는 *위쪽 벡터(in World Space)*를 지정
+     
+      그 후 위쪽 벡터와 2단계의 *방향 벡터*에 교차곱을 함 
+     
+      교차곱의 결과는 두 벡터에 수직인 벡터이므로 양의 `x`축 **방향을 가리키는 벡터**를 얻게 됨(교차곱 순서를 바꾸면 음의 `x`축을 가리키는 벡터를 얻게 됨)
+
+      ```cpp
+      glm::vec3 up = glm::vec3(0.0f, 1.0f, 0.0f); 
+      glm::vec3 cameraRight = glm::normalize(glm::cross(up, cameraDirection));
+      ```
+
+   4. **Up axis**
+
+      *오른쪽 벡터*와 *방향 벡터*의 교차곱을 구함
+
+      ```cpp
+      glm::vec3 cameraUp = glm::cross(cameraDirection, cameraRight);
+      ```
+
+   </details>
+
+   <details>
+   <summary> Look At </summary>
+
+   행렬의 좋은 점은 3개의 수직(또는 비선형) 축을 사용하여 좌표 공간을 정의하면 3개의 축과 *변환 벡터* 를 사용하여 행렬을 만들 수 있음
+   
+   이 행렬을 곱하여 모든 벡터를 해당 좌표 공간으로 변환할 수 있다는 것
+
+    $$
+    V =
+    \begin{bmatrix}
+    R*{right} & R*{up} & R\_{forward} & 0 \\
+    0 & 0 & 0 & 1
+    \end{bmatrix}
+    \begin{bmatrix}
+    1 & 0 & 0 & -P_x \\
+    0 & 1 & 0 & -P_y \\
+    0 & 0 & 1 & -P_z \\
+    0 & 0 & 0 & 1
+    \end{bmatrix}
+    $$
+
+   - $R_{right}$ : 카메라의 오른쪽(`X`)
+   - $R_{up}$ : 위쪽(`Y`)
+   - $R_{forward}$ : 바라보는 방향(`-Z`)
+
+   ```cpp
+   glm::mat4 view;
+   view = glm::lookAt(glm::vec3(0.0f, 0.0f, 3.0f), 
+  		    glm::vec3(0.0f, 0.0f, 0.0f), 
+  		    glm::vec3(0.0f, 1.0f, 0.0f));
+   ```
+
+   </details>
+
+- Walk around
+
+   <details>
+   <summary> processInput 함수 수정 </summary>
+
+   카메라의 모든 움직임을 직접 컨트롤 하기 위해 변수 선언 및 `glm::lookAt` 수정
+
+   ```cpp
+   glm::vec3 cameraPos   = glm::vec3(0.0f, 0.0f,  3.0f);
+   glm::vec3 cameraFront = glm::vec3(0.0f, 0.0f, -1.0f);
+   glm::vec3 cameraUp    = glm::vec3(0.0f, 1.0f,  0.0f);
+   ```
+
+   ```cpp
+   view = glm::lookAt(cameraPos, cameraPos + cameraFront, cameraUp);
+   ```
+
+   ```cpp
+   //  GLFW 라이브러리를 사용하여 특정 키 입력을 감지하고 그에 따라 반응하는 함수
+   void processInput(GLFWwindow* window) {
+	   if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
+		   glfwSetWindowShouldClose(window, true);
+
+     // add
+	   float cameraSpeed = static_cast<float>(2.5 * deltaTime);
+	   if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS)
+		   cameraPos += cameraSpeed * cameraFront;
+	   if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS)
+		   cameraPos -= cameraSpeed * cameraFront;
+	   if (glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS)
+		   cameraPos -= glm::normalize(glm::cross(cameraFront, cameraUp)) * cameraSpeed;
+	   if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS)
+		   cameraPos += glm::normalize(glm::cross(cameraFront, cameraUp)) * cameraSpeed;
+     //
+   }
+   ```
+
+   </detail>
+
+   <details>
+   <summary> Movement speed </summary>
+
+    마지막 프레임을 렌더링하는 데 걸린 시간을 저장하는 변수를 보통 `deltatime` 로 한다함
+
+    ```cpp
+    float deltaTime = 0.0f;	// Time between current frame and last frame
+    float lastFrame = 0.0f; // Time of last frame
+
+    // ....
+
+    float currentFrame = glfwGetTime();
+    deltaTime = currentFrame - lastFrame;
+    lastFrame = currentFrame;  
+    ```
+
+   </detail>
+
+- Look around
+
+   ```cpp
+   int main(void) {
+        // ...
+
+      	glfwMakeContextCurrent(window);
+	      glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
+	      glfwSetCursorPosCallback(window, mouse_callback);
+	      glfwSetScrollCallback(window, scroll_callback);
+
+        // ...
+   }
+   ```
+   <details>
+   <summary> Euler angles </summary>
+
+
+   <p align="center">
+      <img src="https://learnopengl.com/img/getting-started/camera_pitch_yaw_roll.png" alt="Example Image" width="80%">
+      <br/>
+      이미지 출처: learnopengl.com
+   </p>
+
+   오일러 각도는 3D에서 모든 회전을 나타낼 수 있는 3가지 값
+
+   <p align="center">
+      <img src="https://learnopengl.com/img/getting-started/camera_triangle.png" alt="Example Image" width="80%">
+      <br/>
+      이미지 출처: learnopengl.com
+   </p>
+
+   빗변의 길이를 1로 정의하면 삼각법(을 통해 인접한 변의 길이는 `cos x/h=cos x/1=cos x` 이고 
+   
+   반대편의 길이는 `sin y/h=sin y/1=sin y`
+
+   이는 주어진 각도에 따라 직각 삼각형의 `x`와 `y` 변의 길이를 검색하는 몇 가지 일반 공식을 제공
+   
+   이를 사용하여 방향 벡터의 구성 요소를 나타내면
+
+   <p align="center">
+      <img src="https://learnopengl.com/img/getting-started/camera_yaw.png" alt="Example Image" width="80%">
+      <br/>
+      이미지 출처: learnopengl.com
+   </p>
+
+   ```cpp
+   glm::vec3 direction;
+   direction.x = cos(glm::radians(yaw));
+   direction.z = sin(glm::radians(yaw));
+   ```
+
+   이렇게 하면 `yaw` 값에서 3D 방향 벡터를 얻는 방법이 해결되지만, `pitch`도 포함되어야 함
+   
+   이제 `xz` 평면에 앉아 있는 것처럼 `y`축 측면을 살펴보면
+
+   <p align="center">
+      <img src="https://learnopengl.com/img/getting-started/camera_pitch.png" alt="Example Image" width="80%">
+      <br/>
+      이미지 출처: learnopengl.com
+   </p>
+
+   ```cpp
+   direction.x = cos(glm::radians(yaw)) * cos(glm::radians(pitch));
+   direction.y = sin(glm::radians(pitch));
+   direction.z = sin(glm::radians(yaw)) * cos(glm::radians(pitch));
+   ```
+
+   ```cpp
+   yaw = -90.0f;
+   ```
+
+   </details>
+
+   <details>
+   <summary> Mouse input </summary>
+
+
+   **GLFW** 에게 마우스를 **capture** 하라고 알림
+
+   ```cpp
+	 glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+   ```
+
+   1. 마지막 프레임 이후 마우스의 `offset` 을 계산
+   2. `offset` 값을 카메라의 `yaw` 및 `pitch` 값에 추가
+   3. 최소/최대 `pitch` 값에 몇 가지 제약 조건을 추가
+   4. 방향 벡터를 계산
+
+   ```cpp
+   // glfw: 마우스가 움직일 때마다 이 콜백이 호출되는 함수
+   void mouse_callback(GLFWwindow* window, double xposIn, double yposIn) {
+       float xpos = static_cast<float>(xposIn);
+	     float ypos = static_cast<float>(yposIn);
+
+	     if (firstMouse) {
+          lastX = xpos;
+		      lastY = ypos;
+		      firstMouse = false;
+	     }
+
+	     float xoffset = xpos - lastX;
+	     float yoffset = lastY - ypos;
+	     lastX = xpos;
+	     lastY = ypos;
+
+	     float sensitivity = 0.1f;
+	     xoffset *= sensitivity;
+	     yoffset *= sensitivity;
+
+	     yaw += xoffset;
+	     pitch += yoffset;
+
+	     if (pitch > 89.0f) pitch = 89.0f;
+       if (pitch < -89.0f) pitch = -89.0f;
+
+	     glm::vec3 front;
+	     front.x = cos(glm::radians(yaw)) * cos(glm::radians(pitch));
+	     front.y = sin(glm::radians(pitch));
+	     front.z = sin(glm::radians(yaw)) * cos(glm::radians(pitch));
+	     cameraFront = glm::normalize(front);
+   }
+   ```
+
+   </details>
+
+   <details>
+   <summary> Zoom </summary>
+
+   ```cpp
+   void scroll_callback(GLFWwindow* window, double xoffset, double yoffset) {
+       fov -= (float)yoffset;
+       if (fov < 1.0f)
+          fov = 1.0f;
+       if (fov > 45.0f)
+          fov = 45.0f; 
+   }
+   ```
+
+   </details>
+
+- [Camera class](https://learnopengl.com/code_viewer_gh.php?code=includes/learnopengl/camera.h)
+
+**Exercises**
+
+<p align="center">
+  <table style="width:100%; text-align:center; border-spacing:5px;">
+    <tr>
+      <td style="text-align:center; vertical-align:middle;">
+        <p align="center">
+        <img src="https://github.com/BOLTB0X/OpenGL-Study/blob/main/Img/7-Exercise01.gif?raw=true" alt="Example Image" width="70%"/>
+        </p>
+      </td>
+      <td style="text-align:center; vertical-align:middle;">
+        <p align="center">
+        <img src="https://github.com/BOLTB0X/OpenGL-Study/blob/main/Img/7-Exercise02.jpg?raw=true" alt="Example Image" width="70%"/>
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <td style="text-align:center; font-size:14px; font-weight:bold;">
+      <p align="center">
+      ex01
+      </p>
+      </td>
+      <td style="text-align:center; font-size:14px; font-weight:bold;">
+      <p align="center">
+      ex02
+      </p>
+      </td>
+    </tr>
+  </table>
+</p>
+
+- Solution
+
+   <details>
+   <summary> Exercise 01 sol </summary>
+
+   비행할 수 없는 진정한 fps 카메라로 카메라 클래스를 변환할 수 있는지 확인하세요.
+
+   ```cpp
+   void processInput(GLFWwindow* window) {
+      if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
+		    glfwSetWindowShouldClose(window, true);
+
+	    // 평면 이동용 front 벡터 (y 고정)
+	    glm::vec3 frontDir = glm::normalize(glm::vec3(camera.Front.x, 0.0f, camera.Front.z));
+	    // 평면 이동용 right 벡터 (y 고정)
+	    glm::vec3 rightDir = glm::normalize(glm::cross(frontDir, camera.Up));
+
+	    float cameraSpeed = static_cast<float>(2.5 * deltaTime);
+
+	    if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS)
+		    camera.Position += cameraSpeed * frontDir;
+	    if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS)
+		    camera.Position -= cameraSpeed * frontDir;
+	    if (glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS)
+		    camera.Position -= cameraSpeed * rightDir;
+	    if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS)
+		    camera.Position += cameraSpeed * rightDir;
+   }
+   ```
+
+   </details>
+
+   <details>
+   <summary> Exercise 02 sol </summary>
+
+   뷰 매트릭스를 수동으로 생성하는 `LookAt` 함수를 직접 만들어 보세요. 
+   
+   `glm`의 `LookAt` 함수를 자신의 구현으로 바꾸고 여전히 동일하게 작동하는지 확인하세요.
+
+   ```cpp
+   glm::mat4 MyLookAt(glm::vec3 position, glm::vec3 target, glm::vec3 up) {
+      glm::vec3 zaxis = glm::normalize(position - target);
+	    glm::vec3 xaxis = glm::normalize(glm::cross(up, zaxis));
+	    glm::vec3 yaxis = glm::cross(zaxis, xaxis);
+
+	    glm::mat4 translation = glm::mat4(1.0f);
+	    translation[3][0] = -position.x;
+	    translation[3][1] = -position.y;
+	    translation[3][2] = -position.z;
+
+	    glm::mat4 rotation = glm::mat4(1.0f);
+	    rotation[0][0] = xaxis.x;
+	    rotation[1][0] = xaxis.y;
+	    rotation[2][0] = xaxis.z;
+	    rotation[0][1] = yaxis.x;
+	    rotation[1][1] = yaxis.y;
+	    rotation[2][1] = yaxis.z;
+	    rotation[0][2] = zaxis.x;
+	    rotation[1][2] = zaxis.y;
+	    rotation[2][2] = zaxis.z;
+
+	    return rotation * translation;
+   }
+   ```
+
+   </details>
+
+</details>
+
 ## 참고
 
 - [Learn OpenGL](https://learnopengl.com/)
 
 - [티스토리-꽉퓨타의 SW 이야기(OpenGL - 윈도우에 개발환경 구축하기)](https://kwak-story.tistory.com/3)
+
+- [티스토리-woof(Visual Studio 2022 프로젝트/솔루션 이름 변경)](https://woof.tistory.com/1619)
